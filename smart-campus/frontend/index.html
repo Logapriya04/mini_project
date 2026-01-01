@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SIGC Campus Complaint Management System</title>
+
+  <link rel="stylesheet" href="style.css">
+  <link href="https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css" rel="stylesheet">
+</head>
+<body>
+
+<header>
+  <h1>Smart Campus Complaint Management</h1>
+  <p>Raise complaints • Track status • Faster resolution</p>
+</header>
+
+<nav>
+  <a href="#stats">Dashboard</a>
+  <a href="#complaint">Submit Complaint</a>
+  <a href="#track">Track Complaint</a>
+  <a href="#admin">Admin</a>
+</nav>
+
+<!-- DASHBOARD -->
+<section id="stats" class="stats">
+  <div class="stat">
+    <i class='bx bx-layer'></i>
+    <h2 id="total">0</h2>
+    <p>Total Complaints</p>
+  </div>
+  <div class="stat">
+    <i class='bx bx-time-five'></i>
+    <h2 id="pending">0</h2>
+    <p>Pending</p>
+  </div>
+  <div class="stat">
+    <i class='bx bx-check-circle'></i>
+    <h2 id="solved">0</h2>
+    <p>Solved</p>
+  </div>
+</section>
+
+<!-- SUBMIT COMPLAINT -->
+<section id="complaint" class="card">
+  <h2>Submit Complaint</h2>
+
+  <!-- EMAIL -->
+  <input type="email" id="email" placeholder="student@sigc.edu" required>
+
+  <!-- PROBLEM TYPE FIRST -->
+  <select id="category" onchange="handleCategoryChange()">
+    <option value="">Select Problem</option>
+    <option value="Electricity">Electricity</option>
+    <option value="Water">Water</option>
+    <option value="Restroom">Restroom</option>
+    <option value="Wi-Fi">Wi-Fi</option>
+  </select>
+
+  <!-- BLOCK -->
+  <select id="building">
+    <option value="">Select Block</option>
+    <option>J&D Block</option>
+    <option>E Block</option>
+    <option>R Block</option>
+    <option>K Block</option>
+    <option>MCA Block</option>
+    <option>MBA Block</option>
+    <option>VG Block</option>
+    <option>SH Block</option>
+  </select>
+
+  <!-- CLASSROOM (ELECTRICITY ONLY) -->
+  <input type="text" id="classroom" placeholder="Classroom No (Eg: B-203)">
+
+  <!-- ELECTRICITY ISSUE -->
+  <select id="electricityIssue">
+    <option value="">Select Electricity Issue</option>
+    <option>Fan</option>
+    <option>Light</option>
+    <option>Panel</option>
+  </select>
+
+  <!-- FLOOR (WATER / RESTROOM) -->
+  <select id="floor">
+    <option value="">Select Floor</option>
+    <option>Ground Floor</option>
+    <option>1st Floor</option>
+    <option>2nd Floor</option>
+    <option>3rd Floor</option>
+  </select>
+
+  <textarea id="desc" placeholder="Describe the problem..."></textarea>
+
+  <button type="button" onclick="submitComplaint()">Submit Complaint</button>
+
+  <p id="submitMsg"></p>
+</section>
+
+<!-- TRACK -->
+<section id="track" class="card">
+  <h2>Track Complaint</h2>
+  <input type="email" id="trackEmail" placeholder="student@sigc.edu">
+  <button onclick="trackComplaint()">Track</button>
+  <pre id="trackResult"></pre>
+</section>
+
+<!-- ADMIN -->
+<section id="admin" class="card">
+  <h2>Admin Dashboard</h2>
+  <button onclick="loadAdmin()">Refresh</button>
+
+  <table id="adminTable">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Email</th>
+        <th>Problem</th>
+        <th>Description</th>
+        <th>Status</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+</section>
+
+<script src="script.js"></script>
+</body>
+</html>
